@@ -1,0 +1,27 @@
+/* CSS for application layout-level elements */
+
+$headerHeight: 60px;
+$sidebarWidth: 100px;
+
+body { padding-top: $headerHeight; }
+
+#main-sidebar {
+  height: 100%;
+  width: $sidebarWidth;
+  background: blue;
+  float: left;
+}
+
+#main-content {
+  margin-left: $sidebarWidth;
+  height: 100%;
+  background: red;
+}
+
+#main-container {
+  position: absolute;
+  top: $headerHeight;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
