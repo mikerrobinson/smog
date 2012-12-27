@@ -1,6 +1,9 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   rolify
+
+  belongs_to :company
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

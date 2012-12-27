@@ -8,14 +8,12 @@ body { padding-top: $headerHeight; }
 #main-sidebar {
   height: 100%;
   width: $sidebarWidth;
-  background: blue;
   float: left;
 }
 
 #main-content {
   margin-left: $sidebarWidth;
   height: 100%;
-  background: red;
 }
 
 #main-container {
