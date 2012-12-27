@@ -1,5 +1,11 @@
 RailsStripeMembershipSaas::Application.routes.draw do
 
+  resources :companies
+
+
+  resources :contacts
+
+
   mount StripeEvent::Engine => '/stripe'
   get "content/gold"
   get "content/silver"
