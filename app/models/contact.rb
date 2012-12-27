@@ -10,3 +10,30 @@ class Contact
   embeds_many :phones
 
 end
+
+class Address
+  include Mongoid::Document
+
+  field :address, type: string
+
+  embedded_in :contact
+
+end
+
+class Email
+  include Mongoid::Document
+
+  field :email, type: string
+
+  embedded_in :contact
+
+end
+
+class Phone
+  include Mongoid::Document
+
+  field :phone, type: string
+
+  embedded_in :contact
+
+end
