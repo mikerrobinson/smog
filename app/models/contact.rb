@@ -14,7 +14,7 @@ end
 class Address
   include Mongoid::Document
 
-  field :address, type: string
+  field :address, type: String
 
   embedded_in :contact
 
@@ -23,7 +23,7 @@ end
 class Email
   include Mongoid::Document
 
-  field :email, type: string
+  field :email, type: String
 
   embedded_in :contact
 
@@ -32,7 +32,7 @@ end
 class Phone
   include Mongoid::Document
 
-  field :phone, type: string
+  field :phone, type: String
 
   embedded_in :contact
 
