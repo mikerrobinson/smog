@@ -19,5 +19,9 @@ class ApplicationController < ActionController::Base
         root_path
     end
   end
+
+  before_filter do
+    @company = Company.current = current_user.company
+  end
   
 end

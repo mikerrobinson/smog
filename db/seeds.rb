@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Environment variables (ENV['...']) are set in the file config/application.yml.
 # See http://railsapps.github.com/rails-environment-variables.html
+
 puts 'ROLES'
 YAML.load(ENV['ROLES']).each do |role|
   Role.find_or_create_by(:name => role, :without_protection => true)
@@ -15,7 +16,7 @@ end
 
 puts 'DEFAULT COMPANIES'
 company = Company.find_or_create_by :name => 'Acme'
-company.custom_contact_attrs = {:nickname => :string, :birthday => :date}
+company.custom_contact_attrs = { :nickname => :string, :birthday => :date }
 company.save!
 puts 'company: ' << company.name
 
