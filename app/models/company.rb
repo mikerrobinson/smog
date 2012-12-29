@@ -3,7 +3,7 @@ class Company
   include Mongoid::Timestamps
 
   field :name, type: String
-  field :custom_contact_attrs, type: Hash, default: {}
+  field :custom_contact_attrs, type: Hash, default: {}  # keys are attribute name and values are attribute type
 
   has_many :users
   has_many :contacts
@@ -22,7 +22,7 @@ class Company
 
 end
 
-module CompanyScoped
+module Company::CompanyScoped
   extend ActiveSupport::Concern
 
   included do

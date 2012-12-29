@@ -1,10 +1,15 @@
 <%= simple_form_for(@contact) do |f| %>
-  <%= f.error_notification %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-  </div>
+    <div class="form-inputs">
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <% @company.custom_contact_attrs.each do |attr, type| %>
+          <%= f.input attr, as: type %>
+      <% end %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
 <% end %>
