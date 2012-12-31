@@ -11,9 +11,14 @@ class Contact
   embeds_many :phones
 
   after_initialize do
-    # This will create type aware getters and setters for custom contact attributes
+    create_custom_accessors
+  end
+
+  def create_custom_accessors
+    # Create type aware getters and setters for custom contact attributes
+    convert_to = {:integer => :to_i, :date => :to_date, :string => :to_s}
+
     Company.current.custom_contact_attrs.each do |attr, type|
-      convert_to = { :integer => :to_i, :date => :to_date, :string => :to_s }
       metaclass = class << self
         self
       end
