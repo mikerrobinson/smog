@@ -7,26 +7,33 @@ class Contact
   field :last_name, type: String
 
   embeds_many :addresses
+  accepts_nested_attributes_for :addresses, :allow_destroy => true
   embeds_many :emails
+  accepts_nested_attributes_for :emails, :allow_destroy => true
   embeds_many :phones
+  accepts_nested_attributes_for :phones, :allow_destroy => true
+
+
+  #TODO: Add the following line and test for compatibility of dynamic attributes
+  #attr_accessible :first_name, :last_name, :addresses_attributes, :emails_attributes, :phones_attributes
 
   after_initialize do
     create_custom_accessors
   end
 
+  # Create type aware getters and setters for custom contact attributes
   def create_custom_accessors
-    # Create type aware getters and setters for custom contact attributes
-    convert_to = {:integer => :to_i, :date => :to_date, :string => :to_s}
+    convert_to = { :integer => :to_i, :date => :to_date, :string => :to_s }
 
-    Company.current.custom_contact_attrs.each do |attr, type|
+    Company.current.contact_attrs.each do |attr|
       metaclass = class << self
         self
       end
-      metaclass.send(:define_method, :"#{attr}=") do |val|
-        self[attr] = val.send(convert_to[type])
+      metaclass.send(:define_method, :"#{attr.name}=") do |val|
+        self[attr.name] = val.send(convert_to[attr.type])
       end
-      metaclass.send(:define_method, :"#{attr}") do
-        self[attr]
+      metaclass.send(:define_method, :"#{attr.name}") do
+        self[attr.name]
       end
     end
   end

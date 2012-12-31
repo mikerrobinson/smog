@@ -1,10 +1,20 @@
-<%= simple_form_for(@company) do |f| %>
-  <%= f.error_notification %>
+<%= simple_nested_form_for @company do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-  </div>
+    <div class="form-inputs">
+      <%= f.input :name, :as => :string %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+      <h3>Custom Contact Fields</h3>
+      <%= f.simple_fields_for :contact_attrs do |ca| %>
+          <%= ca.input :name, label: 'Field Name', :as => :string %>
+          <%= ca.input :type, label: 'Field Type', :collection => ContactAttr::ATTR_TYPES %>
+          <%= ca.link_to_remove 'Remove Field' %>
+      <% end %>
+      <p><%= f.link_to_add "Add Field", :contact_attrs %></p>
+
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
 <% end %>

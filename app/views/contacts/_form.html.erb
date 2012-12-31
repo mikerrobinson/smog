@@ -4,8 +4,8 @@
     <div class="form-inputs">
       <%= f.input :first_name %>
       <%= f.input :last_name %>
-      <% @company.custom_contact_attrs.each do |attr, type| %>
-          <%= f.input attr, as: type %>
+      <% @company.contact_attrs.each do |attr| %>
+          <%= f.input attr.name, as: attr.type %>
       <% end %>
     </div>
 
