@@ -2,7 +2,7 @@ class Contact
   include Mongoid::Document
   include Mongoid::Timestamps
   include CompanyScoped
-  include DynamicAttributes::Extendable
+  include DynamicAttributes
 
   field :first_name, type: String
   field :last_name, type: String
@@ -15,8 +15,8 @@ class Contact
   accepts_nested_attributes_for :phones, :allow_destroy => true
 
 
-  #TODO: Add the following line and test for compatibility of dynamic attributes
-  #attr_accessible :first_name, :last_name, :addresses_attributes, :emails_attributes, :phones_attributes
+  # Dynamic attributes are incompatible with attr_accessible as it occurs at the class level so use attr_protected
+  #attr_protected
 
   def dynamic_attributes
     Company.current.contact_attrs
