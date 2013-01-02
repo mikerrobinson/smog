@@ -7,7 +7,7 @@ module DynamicAttributes
     end
   end
 
-  # Override to return an array of dynamic attributes
+  # MUST OVERRIDE to return the array of DynamicAttr for the current model instance
   def dynamic_attributes
     []
   end
@@ -29,14 +29,6 @@ module DynamicAttributes
     end
   end
 
-  # Add support for mass assignment
-  def make_accessible
-    metaclass = class << self
-      self
-    end
-    metaclass.send(:attr_accessible, dynamic_attributes)
-  end
-
   class DynamicAttr
     include Mongoid::Document
 
@@ -44,9 +36,6 @@ module DynamicAttributes
 
     field :name, type: Symbol
     field :type, type: Symbol
-
-    embedded_in :company
-
   end
 
 end
