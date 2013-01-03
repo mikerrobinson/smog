@@ -1,26 +1,47 @@
 /* CSS for application layout-level elements */
 
-$headerHeight: 60px;
-$sidebarWidth: 100px;
+@import "bootstrap_customizations";
+@import "bootstrap/variables";
 
-body { padding-top: $headerHeight; }
+$sidebarWidth: 100px;
 
 #main-sidebar {
   height: 100%;
   width: $sidebarWidth;
-  background: blue;
   float: left;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: #555;
+  margin-left: -20px;
+  
+  ul {
+    margin: 10px 10px 10px 10px;
+    
+    li {
+      text-align: center;
+      margin-top: 15px;
+      
+      a {
+        color: white;
+      }
+      
+      a img {
+        margin: 0 auto 5px;
+        display: block;
+      }
+    }
+  }
 }
 
 #main-content {
   margin-left: $sidebarWidth;
   height: 100%;
-  background: red;
+  background: $white;
 }
 
 #main-container {
   position: absolute;
-  top: $headerHeight;
+  top: $navbarHeight;
   bottom: 0px;
   left: 0px;
   right: 0px;
