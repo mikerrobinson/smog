@@ -5,6 +5,9 @@
 
 $sidebarWidth: 100px;
 
+/* ugly hack so responsive header/navbar render correctly (which only partially works) */ 
+.navbar-fixed-top .navbar-inner { padding: 0px; }
+
 #main-sidebar {
   height: 100%;
   width: $sidebarWidth;
@@ -41,8 +44,9 @@ $sidebarWidth: 100px;
 
 #main-container {
   position: absolute;
-  top: $navbarHeight;
+  top: 60px;
   bottom: 0px;
   left: 0px;
   right: 0px;
+  z-index: 1000;
 }
